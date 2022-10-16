@@ -20,8 +20,10 @@ public class Main {
         System.out.println("Задача №2");
         sourceArray = new int[]{25, 14, 56, 15, 47};
         System.out.println("Исходный массив = " + Arrays.toString(sourceArray));
+        // Вариант №1
         HashMap<String, Integer> result = getMinAndMax(sourceArray);
         System.out.println("Вариант №1: Min = " + result.get("min") + " Max = " + result.get("max"));
+        // Вариант №2
         result = getMinAndMaxV2(sourceArray);
         System.out.println("Вариант №2: Min = " + result.get("min") + " Max = " + result.get("max"));
     }

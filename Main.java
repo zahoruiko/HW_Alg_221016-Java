@@ -3,11 +3,8 @@ import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args) {
-
         // Задача №1
         System.out.println("Задача №1");
-        // Восстанавливаем исходный вид массива, так как он был отсортирован
-        // в результате выполнения предыдущего задания (см. Вариант 2)
         int[] sourceArray = new int[]{25, 14, 56, 15, 47};
         System.out.println("Исходный массив = " + Arrays.toString(sourceArray));
         System.out.println("Добавление значения в массив (позиция первого элемента = 0)");

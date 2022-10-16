@@ -4,7 +4,7 @@ import java.util.HashMap;
 public class Main {
     public static void main(String[] args) {
         // Задача №1
-        System.out.println("Задача №1");
+        System.out.println("Задача №1:");
         int[] sourceArray = new int[]{25, 14, 56, 15, 47};
         System.out.println("Исходный массив = " + Arrays.toString(sourceArray));
         System.out.println("Добавление значения в массив (позиция первого элемента = 0)");
@@ -17,7 +17,7 @@ public class Main {
         System.out.println("");
 
         // Задача №2
-        System.out.println("Задача №2");
+        System.out.println("Задача №2:");
         sourceArray = new int[]{25, 14, 56, 15, 47};
         System.out.println("Исходный массив = " + Arrays.toString(sourceArray));
         // Вариант №1
@@ -48,7 +48,7 @@ public class Main {
         if(position == 0) {
             // Указываем значение для элемента, который находится в нулевой позиции
             resultArray[position] = value;
-            // Начиная с следующей позиции (1) результирующего массива, копируем в него все значения из исходного массива
+            // Начиная с следующей позиции (1) результирующего массива, копируем в него значения из исходного массива (с учетом коррекции)
             for (int i = 0; i < sourceArray.length - arrayLengthCorrection; i++) {
                 resultArray[i + 1] = sourceArray[i];
             }
@@ -59,12 +59,12 @@ public class Main {
             }
             // Указываем значение для элемента, который находится в заданной позиции
             resultArray[position] = value;
-            // Копируем из исходного массива элементы, которые находятся после позиции добавления и до конца исходного массива
+            // Копируем из исходного массива элементы, которые находятся после позиции добавления и до конца исходного массива (с учетом коррекции)
             for (int i = position; i < sourceArray.length - arrayLengthCorrection; i++) {
                 resultArray[i + 1] = sourceArray[i];
             }
         } else if (position == resultArray.length - 1) { // Если значение добавляется в конце массива
-            // Копируем в результирующий массив все элементы мз исходного массива
+            // Копируем в результирующий массив элементы мз исходного массива (с учетом коррекции)
             for (int i = 0; i < sourceArray.length - arrayLengthCorrection; i++) {
                 resultArray[i] = sourceArray[i];
             }
@@ -92,19 +92,19 @@ public class Main {
         if(position == 0) {
             // Указываем значение для элемента, который находится в нулевой позиции
             resultArray[position] = value;
-            // Начиная с следующей позиции (1) результирующего массива, копируем в него все значения из исходного массива
+            // Начиная с следующей позиции (1) результирующего массива, копируем в него значения из исходного массива (с учетом коррекции)
             System.arraycopy(sourceArray, 0, resultArray, 1, sourceArray.length - arrayLengthCorrection);
         } else if (position > 0 && position < resultArray.length - 1) { // Если значение добавляется в середину массива
             // Копируем в результирующий массив значения от 0 до позиции, в которую должен быть вставлен новый элемент
             System.arraycopy(sourceArray, 0, resultArray, 0, position);
             // Указываем значение для элемента, который находится в заданной позиции
             resultArray[position] = value;
-            // Копируем из исходного массива элементы, которые находятся после позиции добавления и до конца исходного массива
+            // Копируем из исходного массива элементы, которые находятся после позиции добавления и до конца исходного массива  (с учетом коррекции)
             System.arraycopy(sourceArray, position, resultArray, position + 1, sourceArray.length - arrayLengthCorrection - position);
         } else if (position == resultArray.length - 1) { // Если значение добавляется в конце массива
-            // Копируем в результирующий массив все элементы мз исходного массива
-            // Определяем значение для последнего элемента нового массива
+            // Копируем в результирующий массив все элементы мз исходного массива (с учетом коррекции)
             System.arraycopy(sourceArray, 0, resultArray, 0, sourceArray.length - arrayLengthCorrection);
+            // Определяем значение для последнего элемента нового массива
             resultArray[position] = value;
         } else {
             System.out.println("Позиция элемента не может быть отрицательной или превышать последний индекс результирующего массива!!");

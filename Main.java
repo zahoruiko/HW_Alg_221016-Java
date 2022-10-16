@@ -38,10 +38,14 @@ public class Main {
         int[] resultArray;
         int arrayLengthCorrection;
         if (keepOriginalArraySize) {
+            // Если результирующий массив должен иметь ту же длину, что и исходный
             resultArray = new int[sourceArray.length];
+            // Если результирующий массив такой же длины, как и исходный, тогда - это необходимо учесть   
             arrayLengthCorrection = 1;
         } else {
+            // Если результирующий массив должен быть увеличен для сохранения нового элемента
             resultArray = new int[sourceArray.length + 1];
+            // Если результирующий массив увеличивается, тогда коррекция равны нулю
             arrayLengthCorrection = 0;
         }
         // Если значение добавляется в начало массива
@@ -82,10 +86,14 @@ public class Main {
         int[] resultArray;
         int arrayLengthCorrection;
         if (keepOriginalArraySize) {
+            // Если результирующий массив должен иметь ту же длину, что и исходный
             resultArray = new int[sourceArray.length];
+            // Если результирующий массив такой же длины, как и исходный, тогда - это необходимо учесть   
             arrayLengthCorrection = 1;
         } else {
+            // Если результирующий массив должен быть увеличен для сохранения нового элемента
             resultArray = new int[sourceArray.length + 1];
+            // Если результирующий массив увеличивается, тогда коррекция равны нулю
             arrayLengthCorrection = 0;
         }
         // Если значение добавляется в начало массива

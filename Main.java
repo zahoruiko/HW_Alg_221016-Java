@@ -3,175 +3,179 @@ import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args) {
-        // Задача №1
-        System.out.println("Задача №1:");
+        // Task #1
+        System.out.println("Task #1:");
         int[] sourceArray = new int[]{25, 14, 56, 15, 47};
-        System.out.println("Исходный массив = " + Arrays.toString(sourceArray));
-        System.out.println("Добавление значения в массив (позиция первого элемента = 0)");
-        System.out.println("Вариант №1: Результат (добавление числа 5 в начало): " + Arrays.toString(insertValueInTheArray(sourceArray, 5, 0, true)));
-        System.out.println("Вариант №2: Результат (добавление числа 5 в начало): " + Arrays.toString(insertValueInTheArrayV2(sourceArray, 5, 0, true)));
-        System.out.println("Вариант №1: Результат (добавление числа 5 в позицию 2): " + Arrays.toString(insertValueInTheArray(sourceArray, 5, 2, true)));
-        System.out.println("Вариант №2: Результат (добавление числа 5 в позицию 2): " + Arrays.toString(insertValueInTheArrayV2(sourceArray, 5, 2, true)));
-        System.out.println("Вариант №1: Результат (добавление числа 5 в конец): " + Arrays.toString(insertValueInTheArray(sourceArray, 5, 4, true)));
-        System.out.println("Вариант №2: Результат (добавление числа 5 в конец): " + Arrays.toString(insertValueInTheArrayV2(sourceArray, 5, 4, true)));
+        System.out.println("Source array = " + Arrays.toString(sourceArray));
+        System.out.println("Adding a value to an array (position of the first element = 0)");
+        System.out.println("Option №1: Result (adding the number 5 to the beginning): " + Arrays.toString(insertValueInTheArray(sourceArray, 5, 0, true)));
+        System.out.println("Option №2: Result (adding the number 5 to the beginning): " + Arrays.toString(insertValueInTheArrayV2(sourceArray, 5, 0, true)));
+        System.out.println("Option №1: Result (adding the number 5 to position 2): " + Arrays.toString(insertValueInTheArray(sourceArray, 5, 2, true)));
+        System.out.println("Option №2: Result (adding the number 5 to position 2): " + Arrays.toString(insertValueInTheArrayV2(sourceArray, 5, 2, true)));
+        System.out.println("Option №1: Result (adding the number 5 to the end): " + Arrays.toString(insertValueInTheArray(sourceArray, 5, 4, true)));
+        System.out.println("Option №2: Result (adding the number 5 to the end): " + Arrays.toString(insertValueInTheArrayV2(sourceArray, 5, 4, true)));
         System.out.println("");
 
-        // Задача №2
-        System.out.println("Задача №2:");
+        // Task #2
+        System.out.println("Task #2:");
         sourceArray = new int[]{25, 14, 56, 15, 47};
-        System.out.println("Исходный массив = " + Arrays.toString(sourceArray));
-        // Вариант №1
+        System.out.println("Source array = " + Arrays.toString(sourceArray));
+        // Option #1
         HashMap<String, Integer> result = getMinAndMax(sourceArray);
-        System.out.println("Вариант №1: Min = " + result.get("min") + " Max = " + result.get("max"));
-        // Вариант №2
+        System.out.println("Option #1: Min = " + result.get("min") + " Max = " + result.get("max"));
+        // Option #2
         result = getMinAndMaxV2(sourceArray);
-        System.out.println("Вариант №2: Min = " + result.get("min") + " Max = " + result.get("max"));
+        System.out.println("Option #2: Min = " + result.get("min") + " Max = " + result.get("max"));
     }
 
 
 
-    // Задача №1
-    // Добавление элемента в массив
+    // Task #1
+    // Adding an element to an array
     public static int[] insertValueInTheArray(int[] sourceArray, int value, int position, boolean keepOriginalArraySize) {
-        // Так как мы доавляем значение в массив, а не переопределяем существующее,
-        // поэтому создаем новый массив, который вместит в себя все значения
+        // Since we are adding a value to the array, and not redefining the existing one, 
+        // therefore we are creating a new array that will contain all the values
         int[] resultArray;
         int arrayLengthCorrection;
         if (keepOriginalArraySize) {
-            // Если результирующий массив должен иметь ту же длину, что и исходный
+            // If the resulting array should have the same length as the original one
             resultArray = new int[sourceArray.length];
-            // Если результирующий массив такой же длины, как и исходный, тогда - это необходимо учесть   
+            // If the resulting array is the same length as the original one, then this must be taken into account
             arrayLengthCorrection = 1;
         } else {
-            // Если результирующий массив должен быть увеличен для сохранения нового элемента
+            // If the resulting array needs to be enlarged to save a new element
             resultArray = new int[sourceArray.length + 1];
-            // Если результирующий массив увеличивается, тогда коррекция равны нулю
+            // If the resulting array increases, then the correction is zero
             arrayLengthCorrection = 0;
         }
-        // Если значение добавляется в начало массива
+        // If the value is added to the beginning of the array
         if(position == 0) {
-            // Указываем значение для элемента, который находится в нулевой позиции
+            // Specifying the value for the element that is in the zero position
             resultArray[position] = value;
-            // Начиная с следующей позиции (1) результирующего массива, копируем в него значения из исходного массива (с учетом коррекции)
+            // Starting from the next position (1) of the resulting array, we copy the values 
+            // from the original array into it (taking into account the correction)
             for (int i = 0; i < sourceArray.length - arrayLengthCorrection; i++) {
                 resultArray[i + 1] = sourceArray[i];
             }
-        } else if (position > 0 && position < resultArray.length - 1) { // Если значение добавляется в середину массива
-            // Копируем в результирующий массив значения от 0 до позиции, в которую должен быть вставлен новый элемент
+        } else if (position > 0 && position < resultArray.length - 1) { // If the value is added to the middle of the array
+            // Copy the values from 0 to the position where the new element should be inserted into the resulting array
             for (int i = 0; i < position; i++) {
                 resultArray[i] = sourceArray[i];
             }
-            // Указываем значение для элемента, который находится в заданной позиции
+            // Specifying the value for the element that is in the specified position
             resultArray[position] = value;
-            // Копируем из исходного массива элементы, которые находятся после позиции добавления и до конца исходного массива (с учетом коррекции)
+            // We copy from the source array the elements that are located after the addition position 
+            // and up to the end of the source array (taking into account the correction)
             for (int i = position; i < sourceArray.length - arrayLengthCorrection; i++) {
                 resultArray[i + 1] = sourceArray[i];
             }
-        } else if (position == resultArray.length - 1) { // Если значение добавляется в конце массива
-            // Копируем в результирующий массив элементы мз исходного массива (с учетом коррекции)
+        } else if (position == resultArray.length - 1) { // If the value is added at the end of the array
+            // We copy the elements of the mz of the original array into the resulting array (taking into account the correction)
             for (int i = 0; i < sourceArray.length - arrayLengthCorrection; i++) {
                 resultArray[i] = sourceArray[i];
             }
-            // Определяем значение для последнего элемента нового массива
+            // Defining the value for the last element of the new array
             resultArray[position] = value;
         } else {
-            System.out.println("Позиция элемента не может быть отрицательной или превышать последний индекс результирующего массива!!");
+            System.out.println("The position of an element cannot be negative or exceed the last index of the resulting array!!");
         }
         return resultArray;
     }
 
     public static int[] insertValueInTheArrayV2(int[] sourceArray, int value, int position, boolean keepOriginalArraySize) {
-        // Так как мы доавляем значение в массив, а не переопределяем существующее,
-        // поэтому создаем новый массив, который вместит в себя все значения
+        // Since we are adding a value to the array, and not redefining the existing one, 
+        // therefore we are creating a new array that will contain all the values
         int[] resultArray;
         int arrayLengthCorrection;
         if (keepOriginalArraySize) {
-            // Если результирующий массив должен иметь ту же длину, что и исходный
+            // If the resulting array should have the same length as the original one
             resultArray = new int[sourceArray.length];
-            // Если результирующий массив такой же длины, как и исходный, тогда - это необходимо учесть   
+            // If the resulting array is the same length as the original one, then it must be taken into account
             arrayLengthCorrection = 1;
         } else {
-            // Если результирующий массив должен быть увеличен для сохранения нового элемента
+            // If the resulting array needs to be enlarged to save a new element
             resultArray = new int[sourceArray.length + 1];
-            // Если результирующий массив увеличивается, тогда коррекция равны нулю
+            // If the resulting array increases, then the correction is zero
             arrayLengthCorrection = 0;
         }
-        // Если значение добавляется в начало массива
+        // If the value is added to the beginning of the array
         if(position == 0) {
-            // Указываем значение для элемента, который находится в нулевой позиции
+            // Specifying the value for the element that is in the zero position
             resultArray[position] = value;
-            // Начиная с следующей позиции (1) результирующего массива, копируем в него значения из исходного массива (с учетом коррекции)
+            // Starting from the next position (1) of the resulting array, we copy the values 
+            // from the original array into it (taking into account the correction)
             System.arraycopy(sourceArray, 0, resultArray, 1, sourceArray.length - arrayLengthCorrection);
-        } else if (position > 0 && position < resultArray.length - 1) { // Если значение добавляется в середину массива
-            // Копируем в результирующий массив значения от 0 до позиции, в которую должен быть вставлен новый элемент
+        } else if (position > 0 && position < resultArray.length - 1) { // If the value is added to the middle of the array
+            // Copy the values from 0 to the position where the new element should be inserted into the resulting array
             System.arraycopy(sourceArray, 0, resultArray, 0, position);
-            // Указываем значение для элемента, который находится в заданной позиции
+            // Specifying the value for the element that is in the specified position
             resultArray[position] = value;
-            // Копируем из исходного массива элементы, которые находятся после позиции добавления и до конца исходного массива  (с учетом коррекции)
+            // We copy from the source array the elements that are located after the addition position 
+            // and up to the end of the source array (taking into account the correction)
             System.arraycopy(sourceArray, position, resultArray, position + 1, sourceArray.length - arrayLengthCorrection - position);
-        } else if (position == resultArray.length - 1) { // Если значение добавляется в конце массива
-            // Копируем в результирующий массив все элементы мз исходного массива (с учетом коррекции)
+        } else if (position == resultArray.length - 1) { // If the value is added at the end of the array
+            // Copy to the resulting array all the elements of the mz of the original array (taking into account the correction)
             System.arraycopy(sourceArray, 0, resultArray, 0, sourceArray.length - arrayLengthCorrection);
-            // Определяем значение для последнего элемента нового массива
+            // Defining the value for the last element of the new array
             resultArray[position] = value;
         } else {
-            System.out.println("Позиция элемента не может быть отрицательной или превышать последний индекс результирующего массива!!");
+            System.out.println("The position of an element cannot be negative or exceed the last index of the resulting array!!");
         }
         return resultArray;
     }
 
-    // Задача №2
+    // Task №2
     public static HashMap<String, Integer> getMinAndMax(int[] inputArray) {
-        // Создаем ассоциативный "массив" (HashMap) для возврата найденных значений
+        // Creating an associative "array" (HashMap) to return the found values
         HashMap<String, Integer> result = new HashMap<String, Integer>();
-        // Определяем минимальное значение и добавляем в HashMap
+        // We determine the minimum value and add it to the HashMap
         result.put("min", getMinValue(inputArray));
-        // Определяем максимальное значение и добавляем в HashMap
+        // We determine the maximum value and add it to the HashMap
         result.put("max", getMaxValue(inputArray));
-        // Возвращаем HashMap с минимальным и максимальным значениями
+        // Returning HashMap with minimum and maximum values
         return result;
     }
 
     public static int getMaxValue(int[] inputArray) {
-        // Определяем стартовое значение для сравнения (максимум)
+        // We determine the starting value for comparison (maximum)
         int max = inputArray[0];
-        // Запускаем цикл для перебора элементов массива
+        // Starting a loop to iterate through the array elements
         for (int element: inputArray) {
-            // Если сравниваемый элемент больше ране определенного максимального значения,
+            // If the element being compared is greater than the wound of a certain maximum value,
             if (max < element) {
-                // то устанавливаем это значение в качестве максимального
+                // then we set this value as the maximum
                 max = element;
             }
         }
-        // Возвращаем результат
+        // Returning the result
         return max;
     }
 
     public static int getMinValue(int[] inputArray) {
-        // Определяем стартовое значение для сравнения (минимум)
+        // We determine the starting value for comparison (minimum)
         int min = inputArray[0];
-        // Запускаем цикл для перебора элементов массива
+        // Starting a loop to iterate through the array elements
         for (int element: inputArray) {
-            // Если сравниваемый элемент меньше ранее определенного минимального значения,
+            // If the element being compared is less than the previously defined minimum value,
             if (min > element) {
-                // то устанавливаем это значение в качестве минимального
+                // then we set this value as the minimum
                 min = element;
             }
         }
-        // Возвращаем результат
+        // Returning the result
         return min;
     }
 
     public static HashMap<String, Integer> getMinAndMaxV2(int[] inputArray) {
-        // Создаем ассоциативный "массив" (HashMap) для возврата найденных значений
+        // Creating an associative "array" (HashMap) to return the found values
         HashMap<String, Integer> result = new HashMap<String, Integer>();
-        // Сотрируем массив в порядке возрастания
+        // Sorting the array in ascending order
         Arrays.sort(inputArray);
-        // Минимальное значение теперь находится в начала отсортированного массива
+        // The minimum value is now at the beginning of the sorted array
         result.put("min", inputArray[0]);
-        // Максимальное значение теперь находится в конце отсортированного массива
+        // The maximum value is now at the end of the sorted array
         result.put("max", inputArray[inputArray.length - 1]);
-        // Возвращаем HashMap с минимальным и максимальным значениями
+        // Returning HashMap with minimum and maximum values
         return result;
     }
 }

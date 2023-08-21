@@ -1,1 +1,1 @@
-# Work with arrays with Java
+# Work with arrays in Java
